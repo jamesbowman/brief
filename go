@@ -7,3 +7,4 @@ http://feeds.feedburner.com/reason/Articles \
 http://rss.slashdot.org/slashdot/classic \
 http://feeds2.feedburner.com/hackaday/LgoM \
 http://www.schneier.com/blog/index.rdf
+mv index.html $HOME/www/news

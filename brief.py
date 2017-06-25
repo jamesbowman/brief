@@ -2,6 +2,7 @@
 import sys
 from string import Template
 import hashlib
+import time
 
 import feedparser
 
@@ -19,12 +20,13 @@ DEFAULT_TEMPLATE = Template(u"""\
         font-size:18px;
         color:#000;
         padding:0 10px }
-    .posted { font-size:14px; }
+    .subhead { font-size:14px; }
     .toc { font-size:17px; line-height:1.0; }
     1,h2,h3{line-height:1.2}
     </style>
   </head>
   <body>
+    <p class="subhead">${time}</p>
     ${tocs}
     ${arts}
   </body>
@@ -47,7 +49,7 @@ ENTRY_TEMPLATE = Template(u"""\
 <hr>
 <div class="entry">
   <h2>${title}</h2>
-  <p class="posted">By ${author} on ${published} <a href="${link}">link</a></p>
+  <p class="subhead">By ${author} on ${published} <a href="${link}">link</a></p>
   <div class="entrybody">${content}</div>
 </div>
 """)
@@ -68,7 +70,6 @@ def entry(e):
     return (DIR_TEMPLATE.substitute(ee), ENTRY_TEMPLATE.substitute(ee))
 
 def feed(rssd):
-    print rssd
     d = feedparser.parse(rssd)
     title = d['feed']['title']
     link = d['feed']['link']
@@ -91,6 +92,7 @@ if __name__ == '__main__':
     out = open("index.html", "w")
     # feeds = [feed(open(f).read()) for f in ("frozen1", "frozen2")]
     feeds = [feed(r) for r in sys.argv[1:]]
+    time = time.strftime("%c")
     tocs = "".join([t for (t,a) in feeds])
     arts = "".join([a for (t,a) in feeds])
     out.write(DEFAULT_TEMPLATE.substitute(locals()).encode('utf-8'))
