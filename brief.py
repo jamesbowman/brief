@@ -57,8 +57,10 @@ ENTRY_TEMPLATE = Template(u"""\
 def entry(e):
     if hasattr(e, 'content'):
         content = e.content[0].value
-    else:
+    elif hasattr(e, 'summary'):
         content = e.summary
+    else:
+        content = ""
     ee = {
         'link' : e.link,
         'hash' : hashlib.sha1(e.link).hexdigest(),
