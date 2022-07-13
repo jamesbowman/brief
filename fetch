@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+cd brief
+./brief.py \
+https://blog.plover.com/index.rss \
+https://www.jefftk.com/news.rss \
+https://www.overcomingbias.com/feed \
+http://www.econlib.org/feed/index_xml \
+https://johnhcochrane.blogspot.com/feeds/posts/default \
+http://feeds.feedburner.com/Themoneyillusion \
+http://feeds.feedburner.com/marginalrevolution/feed \
+http://feeds.feedburner.com/scitechdaily?format=xml \
+https://rss.dw.com/xml/DKpodcast_lgn_de \
+\
+http://rss.slashdot.org/slashdot/classic \
+http://feeds2.feedburner.com/hackaday/LgoM
+
+# http://slatestarcodex.com/feed/ \
+# https://davidyat.es/rss
+
+mv index.html /data/scratch32/html/excamera/files/private/news.html

@@ -74,7 +74,7 @@ def entry(e):
 def feed(rssd):
     d = feedparser.parse(rssd)
     title = d['feed'].get('title', 'NO TITLE')
-    link = d['feed']['link']
+    link = d['feed'].get('link', '')
     converted = [entry(e) for e in d.entries[:10]]
     toc = "".join([d for (d,e) in converted])
     articles = "".join([e for (d,e) in converted])
